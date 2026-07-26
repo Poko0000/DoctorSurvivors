@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: Test
   icon: {fileID: 7482667652216324306, guid: 9ab1e33846b79ea46bb226bcacb7a433, type: 3}
   projectilePrefab: {fileID: 7684418543100613342, guid: 7b4fd6616bc88b44697d01521ed7846d, type: 3}
-  damage: 1
+  damage: 5
   cooldown: 2
   speed: 5
   lifetime: 5
