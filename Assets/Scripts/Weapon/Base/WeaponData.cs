@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObject/Weapon Data",fileName = "WeaponData_")]
+[CreateAssetMenu(fileName = "WeaponData_", menuName = "Scriptable Objects/Weapon Data")]
 public class WeaponData : ScriptableObject
 {
     public string weaponName;
