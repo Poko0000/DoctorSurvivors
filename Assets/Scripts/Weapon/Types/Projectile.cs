@@ -2,14 +2,13 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    Transform target;
-
+    Vector2 direction;
     float damage;
     float speed;
 
-    public void Initialize(Transform target, float damage, float speed, float lifetime)
+    public void Initialize(Vector2 dir, float damage, float speed, float lifetime)
     {
-        this.target = target;
+        this.direction = dir;
         this.damage = damage;
         this.speed = speed;
 
@@ -24,17 +23,15 @@ public class Projectile : MonoBehaviour
            // return;
         //}
 
-        transform.position += target.transform.right * speed * Time.deltaTime;
+        transform.position += (Vector3)direction * speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //Enemy enemy = other.GetComponent<Enemy>();
-
-        //if (enemy == null) return;
-
-        //enemy.TakeDamage(damage);
-
-        Destroy(gameObject);
+        if(other.TryGetComponent(out EnemyHealth enemyHealth))
+        {
+            enemyHealth.TakeDamage(damage);
+            Destroy(gameObject);
+        }    
     }
 }

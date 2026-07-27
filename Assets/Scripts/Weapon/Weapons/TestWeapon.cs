@@ -1,19 +1,22 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class TestWeapon : IWeapon
 {
     protected override void Attack()
     {
-        //Enemy target = EnemyManager.Instance.GetNearestEnemy(transform.position);
+        Enemy target = EnemyManager.Instance.GetNearestEnemy(transform.position);
 
-        //if (target == null) return;
+        if (target == null) return;
 
-        GameObject bullet = Instantiate(data.projectilePrefab, transform.position, data.projectilePrefab.transform.rotation);
+        Vector3 dir = (target.transform.position - transform.position).normalized;
+        float angle = (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg)- 90;
 
-        Projectile projectile = bullet.GetComponent<Projectile>();
+        GameObject bullet = Instantiate(data.projectilePrefab, transform.position, Quaternion.Euler(0,0,angle));
 
-        //projectile.Initialize(target.transform,data.damage,data.speed,data.lifetime);
-        projectile.Initialize(transform, data.damage, data.speed, data.lifetime);
+        Projectile projectile = bullet.GetComponent<Projectile>(); 
+
+        projectile.Initialize(dir,data.damage,data.speed,data.lifetime);
 
         Debug.Log(name + " is attack");
     }
