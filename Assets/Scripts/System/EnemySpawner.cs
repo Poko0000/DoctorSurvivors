@@ -4,7 +4,10 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] Enemy enemyPrefab;
     [SerializeField] float interval = 2;
-    float timer;
+    public int spawnAmount = 50;
+    public float spawnRadius = 10f;
+    private float timer;
+    private Transform player;
 
     void Update()
     {
@@ -14,12 +17,23 @@ public class EnemySpawner : MonoBehaviour
         {
             timer = 0;
 
-            Spawn();
+            SpawnWave();
         }
     }
 
-    void Spawn()
+    public void SpawnWave()
     {
-        Instantiate(enemyPrefab);
+        for(int i = 0; i < spawnAmount; i++)
+        {
+            SpawnEnemy();
+        }
+    }
+
+    void SpawnEnemy()
+    {
+        player = FindAnyObjectByType<PlayerController>().transform;
+        Vector2 randomPos = Random.insideUnitCircle.normalized * spawnRadius;
+        Vector3 pos = player.position + (Vector3)randomPos * spawnRadius;
+        Instantiate(enemyPrefab, pos, Quaternion.identity);
     }
 }

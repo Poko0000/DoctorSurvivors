@@ -9,7 +9,7 @@ public class EnemyMovement : MonoBehaviour, IEnemyComponent
     public void Initialize(EnemyData enemyData)
     {
         data = enemyData;
-        player = FindFirstObjectByType<PlayerController>().transform;
+        player = FindAnyObjectByType<PlayerController>().transform;
     }
 
     void Update()
