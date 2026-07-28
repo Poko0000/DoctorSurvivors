@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
-    public List<Wave> waves;
+    public List<WaveData> waves;
 
 
-    public Wave GetCurrentWave(float time)
+    public WaveData GetCurrentWave(float time)
     {
-        Wave result = null;
+        WaveData result = null;
 
 
         foreach(var wave in waves)

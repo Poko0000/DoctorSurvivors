@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3adc6b2468075dc42bb896ec1caba498, type: 3}
   m_Name: Wave_
   m_EditorClassIdentifier: Assembly-CSharp::Wave
-  enemys: []
+  enemys:
+  - {fileID: 11400000, guid: f7f36e6de51a6954a81d18180c7e1aef, type: 2}
   startTime: 0
-  spawnInterval: 0
-  maxCount: 0
+  spawnInterval: 1
+  maxCount: 10
