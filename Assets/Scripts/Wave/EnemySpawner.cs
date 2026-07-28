@@ -31,9 +31,10 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        player = FindAnyObjectByType<PlayerController>().transform;
+        player = player = PlayerController.Instance.transform;
         Vector2 randomPos = Random.insideUnitCircle.normalized * spawnRadius;
         Vector3 pos = player.position + (Vector3)randomPos * spawnRadius;
         Instantiate(enemyPrefab, pos, Quaternion.identity);
+        EnemyPool.Instance.Get(enemyPrefab);
     }
 }

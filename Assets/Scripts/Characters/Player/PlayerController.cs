@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance {get; private set;}
     [SerializeField] float moveSpeed;
     [SerializeField] int playerHealth;
     PlayerInputHandler m_playerInput;
@@ -12,6 +13,13 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        
         m_playerInput = GetComponent<PlayerInputHandler>();
         m_rigidbody = GetComponent<Rigidbody2D>();
         m_weaponHandler = GetComponent<PlayerWeaponHandler>();
