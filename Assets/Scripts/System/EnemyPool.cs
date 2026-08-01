@@ -1,44 +1,67 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Pool;
 
-public class EnemyPool : MonoBehaviour
+public class ObjectPool<T> where T : MonoBehaviour
 {
-    public static EnemyPool Instance {get; private set;}
-    public Enemy prefab;
+    private Queue<T> _objectQueue;
+    private GameObject _prefab;
 
-    Queue<Enemy> pool = new();
-
-    void Awake()
+    // singlrton
+    private static ObjectPool<T> _instance = null;
+    public static ObjectPool<T> instance
     {
-        if (Instance != null && Instance != this)
+        get
         {
-            Destroy(gameObject);
-            return;
+            if(_instance == null)
+            {
+                _instance = new ObjectPool<T>();
+            }
+            return _instance;
         }
-        Instance = this;
     }
 
-    public Enemy Get(Enemy enemy)
+    public int queueCount
     {
-        if(pool.Count > 0)
+        get
         {
-            enemy = pool.Dequeue();
-
-            enemy.gameObject.SetActive(true);
-
-            return enemy;
+            return _objectQueue.Count;
         }
-
-
-        return Instantiate(prefab);
     }
 
-
-    public void Return(Enemy enemy)
+    public void InitPool(GameObject prefab)
     {
-        enemy.gameObject.SetActive(false);
+        _prefab = prefab;
+        _objectQueue = new Queue<T>();
+    }
 
-        pool.Enqueue(enemy);
+    public T Spawn(Vector3 position, Quaternion quaternion)
+    {
+        if(_prefab == null)
+        {
+            Debug.LogError(typeof(T).ToString() + "prefab not set!");
+            return default(T);
+        }
+        if(queueCount <= 0)
+        {
+           GameObject g = Object.Instantiate(_prefab,position,quaternion); 
+           T t = g.GetComponent<T>();
+           if(t == null)
+            {
+                Debug.LogError(typeof(T).ToString() + "not found! in prefab");
+                return default(T);
+            }
+            _objectQueue.Enqueue(t);
+        }
+        T obj = _objectQueue.Dequeue();
+        obj.gameObject.transform.position = position;
+        obj.gameObject.transform.rotation = quaternion;
+        obj.gameObject.SetActive(true);
+        return obj;
+    }
+
+    public void Return(T obj)
+    {
+        _objectQueue.Enqueue(obj);
+        obj.gameObject.SetActive(false);
     }
 }

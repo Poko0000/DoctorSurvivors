@@ -8,6 +8,13 @@ public class EnemySpawner : MonoBehaviour
     public float spawnRadius = 10f;
     private float timer;
     private Transform player;
+    private ObjectPool<Enemy> enemyPool;
+
+    void Start()
+    {
+        enemyPool = ObjectPool<Enemy>.instance;
+        enemyPool.InitPool(enemyPrefab.gameObject);
+    }
 
     void Update()
     {
@@ -34,7 +41,7 @@ public class EnemySpawner : MonoBehaviour
         player = player = PlayerController.Instance.transform;
         Vector2 randomPos = Random.insideUnitCircle.normalized * spawnRadius;
         Vector3 pos = player.position + (Vector3)randomPos * spawnRadius;
-        Instantiate(enemyPrefab, pos, Quaternion.identity);
-        EnemyPool.Instance.Get(enemyPrefab);
+        //Instantiate(enemyPrefab, pos, Quaternion.identity);
+        Enemy enemy = enemyPool.Spawn(pos, Quaternion.identity);
     }
 }
