@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Default Local Group
+  m_GUID: 701cd71839209304fa5977c0873723ac
+  m_SerializeEntries:
+  - m_GUID: a0b097dc0db3f9e49b036ece67bfe4fc
+    m_Address: Assets/Data/Waves/Wave_.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f46f5636f2240e1419414729e1e2b2c9
+    m_Address: Assets/Data/Weapons/WeaponData_Test.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f7f36e6de51a6954a81d18180c7e1aef
+    m_Address: Assets/Data/Enemys/EnemyData_Test.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 32d2edf33d2aa694ead83fcb20286e02, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 960db0bec6a9c5f4587187b0300d2847, type: 2}
+    - {fileID: 11400000, guid: 4882aaa102e4ede4ba0ccb85c1b1f4dc, type: 2}
