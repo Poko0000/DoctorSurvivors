@@ -28,10 +28,20 @@ public class ObjectPool<T> where T : MonoBehaviour
         }
     }
 
-    public void InitPool(GameObject prefab)
+    public void InitPool(GameObject prefab, int warnUpCount = 0)
     {
         _prefab = prefab;
         _objectQueue = new Queue<T>();
+
+        List<T> warnUpList = new List<T>();
+        for(int i = 0; i < warnUpCount; i++)
+        {
+            T t = instance.Spawn(Vector3.zero, Quaternion.identity);
+            warnUpList.Add(t);
+        }
+        foreach(var obj in warnUpList) {
+            instance.Return(obj);
+        }
     }
 
     public T Spawn(Vector3 position, Quaternion quaternion)

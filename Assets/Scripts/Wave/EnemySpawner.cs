@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         enemyPool = ObjectPool<Enemy>.instance;
-        enemyPool.InitPool(enemyPrefab.gameObject);
+        enemyPool.InitPool(enemyPrefab.gameObject, 200);
     }
 
     void Update()
@@ -43,5 +43,6 @@ public class EnemySpawner : MonoBehaviour
         Vector3 pos = player.position + (Vector3)randomPos * spawnRadius;
         //Instantiate(enemyPrefab, pos, Quaternion.identity);
         Enemy enemy = enemyPool.Spawn(pos, Quaternion.identity);
+        enemy.Reset();
     }
 }

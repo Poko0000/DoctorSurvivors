@@ -3,21 +3,31 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
-    public List<WaveData> waves;
+    public WaveData[] waves;
 
+    public float GameTime { get; private set; }
 
-    public WaveData GetCurrentWave(float time)
+    public WaveData CurrentWave { get; private set; }
+
+    private void Update()
     {
-        WaveData result = null;
+        GameTime += Time.deltaTime;
 
+        UpdateWave();
+    }
 
-        foreach(var wave in waves)
+    void UpdateWave()
+    {
+        foreach (var wave in waves)
         {
-            if(time >= wave.startTime)
-                result = wave;
+            if (GameTime >= wave.startTime &&
+                GameTime < wave.endTime)
+            {
+                CurrentWave = wave;
+                return;
+            }
         }
 
-
-        return result;
+        CurrentWave = waves[waves.Length - 1];
     }
 }

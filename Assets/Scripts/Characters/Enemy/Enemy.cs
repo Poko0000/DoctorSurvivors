@@ -6,10 +6,7 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        foreach(var component in GetComponents<IEnemyComponent>())
-        {
-            component.Initialize(data);
-        }
+        Reset();
     }
 
     void OnEnable()
@@ -19,5 +16,13 @@ public class Enemy : MonoBehaviour
     void OnDisable()
     {
         EnemyManager.Instance.Remove(this);
+    }
+
+    public void Reset()
+    {
+        foreach(var component in GetComponents<IEnemyComponent>())
+        {
+            component.Initialize(data);
+        }
     }
 }

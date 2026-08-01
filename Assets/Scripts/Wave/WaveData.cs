@@ -4,11 +4,22 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WaveData_", menuName = "Scriptable Objects/Wave")]
 public class WaveData : ScriptableObject
 {
-    public List<EnemyData> enemys;
-
+    [Header("時間")]
     public float startTime;
+    public float endTime;
 
-    public float spawnInterval;
+    [Header("生成設定")]
+    public SpawnInfo[] spawnInfos;
+}
 
-    public int maxCount;
+[System.Serializable]
+public class SpawnInfo
+{
+    public EnemyData enemy;
+
+    [Tooltip("每秒生成幾隻")]
+    public float spawnRate;
+
+    [Tooltip("此敵人最大存在數")]
+    public int maxAlive;
 }
