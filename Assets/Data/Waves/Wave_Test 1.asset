@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3adc6b2468075dc42bb896ec1caba498, type: 3}
   m_Name: Wave_Test 1
   m_EditorClassIdentifier: Assembly-CSharp::Wave
-  startTime: 10
-  endTime: 20
+  startTime: 0
+  endTime: 10
   spawnInfos:
+  - enemyData: {fileID: 11400000, guid: f7f36e6de51a6954a81d18180c7e1aef, type: 2}
+    spawnRate: 1
+    maxAlive: 20
   - enemyData: {fileID: 11400000, guid: 491e9df863eb8c44a8467386aa75e5b4, type: 2}
     spawnRate: 1
     maxAlive: 20

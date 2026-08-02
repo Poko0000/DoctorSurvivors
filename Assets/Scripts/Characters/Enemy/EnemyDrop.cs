@@ -12,7 +12,7 @@ public class EnemyDrop : MonoBehaviour, IEnemyComponent
     public void Drop()
     {
         //Instantiate(data.dropPrefab,transform.position,Quaternion.identity);
-        Debug.Log("enemy drop");
+        //Debug.Log("enemy drop");
     }
 
 }

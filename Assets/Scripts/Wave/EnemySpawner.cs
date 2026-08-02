@@ -14,6 +14,7 @@ public class EnemySpawner : MonoBehaviour
         currentWave = WaveManager.Instance.CurrentWave;
 
         if (currentWave == null) return;
+        if(currentWave.endTime < WaveManager.Instance.GameTime) return;
 
         if (spawnTimers == null || spawnTimers.Length != currentWave.spawnInfos.Length)
         {

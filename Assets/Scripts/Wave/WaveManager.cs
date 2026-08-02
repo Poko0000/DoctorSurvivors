@@ -8,6 +8,7 @@ public class WaveManager : MonoBehaviour
     public float GameTime { get; private set; }
 
     public WaveData CurrentWave { get; private set; }
+    private int currentWaveNum;
 
     public static WaveManager Instance;
 
@@ -20,6 +21,8 @@ public class WaveManager : MonoBehaviour
         }
 
         Instance = this;
+
+        currentWaveNum = 1;
     }
 
 
@@ -32,15 +35,13 @@ public class WaveManager : MonoBehaviour
 
     void UpdateWave()
     {
-        foreach (var wave in waves)
+        if(currentWaveNum < waves.Length && GameTime > waves[currentWaveNum].endTime)
         {
-            if (GameTime >= wave.startTime && GameTime < wave.endTime)
-            {
-                CurrentWave = wave;
-                return;
-            }
+            GameTime = 0;
+            currentWaveNum++;
+            Debug.Log("wave change");
         }
 
-        CurrentWave = waves[waves.Length - 1];
+        CurrentWave = waves[currentWaveNum - 1];
     }
 }

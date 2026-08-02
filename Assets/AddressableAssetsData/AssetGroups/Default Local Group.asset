@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 701cd71839209304fa5977c0873723ac
   m_SerializeEntries:
+  - m_GUID: 491e9df863eb8c44a8467386aa75e5b4
+    m_Address: Assets/Data/Enemys/EnemyData_Test 1.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a0b097dc0db3f9e49b036ece67bfe4fc
     m_Address: Assets/Data/Waves/Wave_.asset
     m_ReadOnly: 0

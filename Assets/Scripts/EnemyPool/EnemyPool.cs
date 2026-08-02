@@ -15,9 +15,7 @@ public class EnemyPool
         {
             Enemy enemy = Object.Instantiate(data.enemyPrefab).GetComponent<Enemy>();
 
-            enemy.gameObject.SetActive(false);
-
-            queue.Enqueue(enemy);
+            Return(enemy);
         }
     }
 

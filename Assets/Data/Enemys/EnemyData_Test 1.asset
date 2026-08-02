@@ -17,4 +17,4 @@ MonoBehaviour:
   damage: 1
   exp: 1
   enemyPrefab: {fileID: 1585118723754225016, guid: 62cd6920c6bab0a458a2d9b24919cd13, type: 3}
-  prewarmCount: 50
+  prewarmCount: 0
