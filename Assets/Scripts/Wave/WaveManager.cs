@@ -9,6 +9,20 @@ public class WaveManager : MonoBehaviour
 
     public WaveData CurrentWave { get; private set; }
 
+    public static WaveManager Instance;
+
+    private void Awake() 
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
+
+
     private void Update()
     {
         GameTime += Time.deltaTime;
@@ -20,8 +34,7 @@ public class WaveManager : MonoBehaviour
     {
         foreach (var wave in waves)
         {
-            if (GameTime >= wave.startTime &&
-                GameTime < wave.endTime)
+            if (GameTime >= wave.startTime && GameTime < wave.endTime)
             {
                 CurrentWave = wave;
                 return;

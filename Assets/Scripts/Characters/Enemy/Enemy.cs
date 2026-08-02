@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private EnemyData data;
+    public EnemyData Data;
 
     private void Awake()
     {
-        Reset();
+        Init(Data);
     }
 
     void OnEnable()
@@ -18,8 +18,9 @@ public class Enemy : MonoBehaviour
         EnemyManager.Instance.Remove(this);
     }
 
-    public void Reset()
+    public void Init(EnemyData data)
     {
+
         foreach(var component in GetComponents<IEnemyComponent>())
         {
             component.Initialize(data);

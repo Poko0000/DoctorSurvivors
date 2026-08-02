@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1df5ec60eb90b6e44873ef1d40caa20a, type: 3}
-  m_Name: EnemyData_Test
+  m_Name: EnemyData_Test 1
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   maxHealth: 2
   moveSpeed: 1
   damage: 1
   exp: 1
-  enemyPrefab: {fileID: 1585118723754225016, guid: cbae79705a3f5d54cb44340850ef527d, type: 3}
+  enemyPrefab: {fileID: 1585118723754225016, guid: 62cd6920c6bab0a458a2d9b24919cd13, type: 3}
   prewarmCount: 50

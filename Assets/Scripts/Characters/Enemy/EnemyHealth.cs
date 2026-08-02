@@ -26,6 +26,6 @@ public class EnemyHealth : MonoBehaviour, IEnemyComponent
     {
         GetComponent<EnemyDrop>().Drop();
         //Destroy(gameObject);
-        ObjectPool<Enemy>.instance.Return(this.gameObject.GetComponent<Enemy>());
+        EnemyPoolManager.Instance.Return(GetComponent<Enemy>());
     }
 }

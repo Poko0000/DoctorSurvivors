@@ -1,48 +1,84 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] Enemy enemyPrefab;
-    [SerializeField] float interval = 2;
-    public int spawnAmount = 50;
-    public float spawnRadius = 10f;
-    private float timer;
-    private Transform player;
-    private ObjectPool<Enemy> enemyPool;
 
-    void Start()
+    [SerializeField] private float spawnOffset = 3f;
+    private Transform player => PlayerController.Instance.transform;
+    private float[] spawnTimers;
+    private WaveData currentWave;
+    
+    private void Update()
     {
-        enemyPool = ObjectPool<Enemy>.instance;
-        enemyPool.InitPool(enemyPrefab.gameObject, 200);
-    }
+        currentWave = WaveManager.Instance.CurrentWave;
 
-    void Update()
-    {
-        timer += Time.deltaTime;
+        if (currentWave == null) return;
 
-        if(timer >= interval)
+        if (spawnTimers == null || spawnTimers.Length != currentWave.spawnInfos.Length)
         {
-            timer = 0;
+            spawnTimers = new float[currentWave.spawnInfos.Length];
+        }
 
-            SpawnWave();
+        for (int i = 0; i < currentWave.spawnInfos.Length; i++)
+        {
+            SpawnInfo info = currentWave.spawnInfos[i];
+
+            spawnTimers[i] += Time.deltaTime;
+
+            float interval = 1f / info.spawnRate;
+
+            if (spawnTimers[i] >= interval)
+            {
+                spawnTimers[i] = 0;
+
+                SpawnEnemy(info);
+            }
         }
     }
 
-    public void SpawnWave()
+   void SpawnEnemy(SpawnInfo info)
     {
-        for(int i = 0; i < spawnAmount; i++)
+        if (info.enemyData == null)
         {
-            SpawnEnemy();
+            Debug.LogError("SpawnInfo 沒有指定 EnemyData");
+            return;
         }
+
+        //限制同種敵人數量
+        if (EnemyManager.Instance.GetAliveCount(info.enemyData) >= info.maxAlive) return;
+
+        Enemy enemy = EnemyPoolManager.Instance.Get(info.enemyData);
+
+        enemy.transform.position = GetSpawnPosition();
+
+        enemy.Init(info.enemyData);
+
+        EnemyManager.Instance.Register(enemy);
     }
 
-    void SpawnEnemy()
+    Vector3 GetSpawnPosition()
     {
-        player = player = PlayerController.Instance.transform;
-        Vector2 randomPos = Random.insideUnitCircle.normalized * spawnRadius;
-        Vector3 pos = player.position + (Vector3)randomPos * spawnRadius;
-        //Instantiate(enemyPrefab, pos, Quaternion.identity);
-        Enemy enemy = enemyPool.Spawn(pos, Quaternion.identity);
-        enemy.Reset();
+        Camera cam = Camera.main;
+
+        float height = cam.orthographicSize;
+        float width = height * cam.aspect;
+
+        int side = Random.Range(0, 4);
+
+        switch (side)
+        {
+            case 0:
+                return player.position + new Vector3(-width - spawnOffset, Random.Range(-height, height));
+
+            case 1:
+                return player.position + new Vector3(width + spawnOffset, Random.Range(-height, height));
+
+            case 2:
+                return player.position + new Vector3(Random.Range(-width, width), height + spawnOffset);
+
+            default:
+                return player.position + new Vector3(Random.Range(-width, width), -height - spawnOffset);
+        }
     }
 }

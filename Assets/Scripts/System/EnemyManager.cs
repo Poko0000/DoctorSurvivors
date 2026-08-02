@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager Instance;
-    List<Enemy> enemies = new List<Enemy>();
+    private Dictionary<EnemyData, List<Enemy>> enemies;
 
     private void Awake() 
     {
@@ -14,16 +14,48 @@ public class EnemyManager : MonoBehaviour
             return;
         }
         Instance = this;
+
+        enemies = new Dictionary<EnemyData, List<Enemy>>();
     }
 
     public void Register(Enemy enemy)
     {
-        enemies.Add(enemy);
+        if (!enemies.ContainsKey(enemy.Data))
+        {
+            enemies.Add(enemy.Data, new List<Enemy>());
+        }
+
+        enemies[enemy.Data].Add(enemy);
     }
 
     public void Remove(Enemy enemy)
     {
-        enemies.Remove(enemy);
+        if (enemies.ContainsKey(enemy.Data))
+        {        
+            enemies[enemy.Data].Remove(enemy);
+        }
+    }
+
+    public int GetAliveCount(EnemyData data)
+    {
+        if (data == null)
+        {
+            Debug.LogError("EnemyData is null");
+            return 0;
+        }
+
+        if (enemies == null)
+        {
+            Debug.LogError("Enemy dictionary is null");
+            return 0;
+        }
+
+        if (!enemies.TryGetValue(data, out List<Enemy> list))
+        {
+            return 0;
+        }   
+        
+        return enemies[data].Count;
     }
 
     public Enemy GetNearestEnemy(Vector3 position)
@@ -31,16 +63,20 @@ public class EnemyManager : MonoBehaviour
         Enemy nearest = null;
         float minDistance = Mathf.Infinity;
 
-        foreach (Enemy enemy in enemies)
+        foreach (var pair in enemies)
         {
-            float distance = Vector3.Distance(position, enemy.transform.position);
-
-            if(distance < minDistance)
+            foreach (Enemy enemy in pair.Value)
             {
-                minDistance = distance;
-                nearest = enemy;
+                float distance = Vector3.Distance(position, enemy.transform.position);
+
+                if(distance < minDistance)
+                {
+                    minDistance = distance;
+                    nearest = enemy;
+                }
             }
         }
+
         return nearest;
     }
 }
