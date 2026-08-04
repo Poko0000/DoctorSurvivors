@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D m_rigidbody;
     PlayerWeaponHandler m_weaponHandler;
     PlayerHealthHandler m_healthHandler;
+    PlayerLevelHandler m_levelHandler;
     [SerializeField] WeaponData weapon;
 
     void Awake()
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
         m_rigidbody = GetComponent<Rigidbody2D>();
         m_weaponHandler = GetComponent<PlayerWeaponHandler>();
         m_healthHandler = GetComponent<PlayerHealthHandler>();
+        m_levelHandler = GetComponent<PlayerLevelHandler>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,7 +37,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+       m_levelHandler.LevelUpdate();
     }
 
     void FixedUpdate()

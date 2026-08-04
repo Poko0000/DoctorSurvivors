@@ -9,7 +9,7 @@ public class EnemyData : ScriptableObject
 
     public int exp;
 
-    public GameObject enemyPrefab;
-
     public int prewarmCount = 50;
+    public GameObject enemyPrefab;
+    public GameObject dropPrefab;
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wave_Test
   m_EditorClassIdentifier: Assembly-CSharp::Wave
   startTime: 0
-  endTime: 10
+  endTime: 5
   spawnInfos:
   - enemyData: {fileID: 11400000, guid: f7f36e6de51a6954a81d18180c7e1aef, type: 2}
     spawnRate: 1

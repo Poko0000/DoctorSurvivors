@@ -16,5 +16,6 @@ MonoBehaviour:
   moveSpeed: 1
   damage: 1
   exp: 1
-  enemyPrefab: {fileID: 1585118723754225016, guid: cbae79705a3f5d54cb44340850ef527d, type: 3}
   prewarmCount: 0
+  enemyPrefab: {fileID: 1585118723754225016, guid: cbae79705a3f5d54cb44340850ef527d, type: 3}
+  dropPrefab: {fileID: 1057697105736830603, guid: ec8d6a89d57a29f4caebd1ff921e6d6e, type: 3}
