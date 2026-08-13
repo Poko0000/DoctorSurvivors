@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "WaveData_", menuName = "Scriptable Objects/Wave")]
+[CreateAssetMenu(fileName = "WaveData_", menuName = "Scriptable Objects/WaveData")]
 public class WaveData : ScriptableObject
 {
     [Header("時間")]
