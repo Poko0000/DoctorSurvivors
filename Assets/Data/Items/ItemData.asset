@@ -9,6 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f40bea9a4484c2641aa50f9486465987, type: 3}
+  m_Script: {fileID: 11500000, guid: 5416e3169d9fe334682f9a90cff6f799, type: 3}
   m_Name: ItemData
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemName: A
+  description: 
+  icon: {fileID: 7482667652216324306, guid: 9ab1e33846b79ea46bb226bcacb7a433, type: 3}
+  shapeType: 1

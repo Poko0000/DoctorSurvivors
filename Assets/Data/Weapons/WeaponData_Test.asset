@@ -17,8 +17,9 @@ MonoBehaviour:
   projectilePrefab: {fileID: 7684418543100613342, guid: 7b4fd6616bc88b44697d01521ed7846d, type: 3}
   damage: 2
   cooldown: 2
-  speed: 5
+  speed: 15
   lifetime: 5
   amount: 1
   range: 1
+  maxLevel: 0
   weaponPrefab: {fileID: 1493665847200883624, guid: c6746eb18e8ef994a9aea3fb2eab333c, type: 3}

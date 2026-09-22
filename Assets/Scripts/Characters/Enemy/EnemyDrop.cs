@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyDrop : MonoBehaviour, IEnemyComponent
 {   
-    [SerializeField] EnemyData data;
+    private EnemyData data;
 
     public void Initialize(EnemyData enemyData)
     {

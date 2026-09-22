@@ -21,5 +21,7 @@ public class WeaponData : ScriptableObject
 
     public float range;
 
+    public int maxLevel;
+
     public GameObject weaponPrefab;
 }
