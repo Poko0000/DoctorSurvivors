@@ -4,6 +4,8 @@ using UnityEngine.UI;
 /// <summary>
 /// 背包的視覺呈現層。放在一個 RectTransform 上(通常是 Canvas 底下的一個 Panel),
 /// 負責:畫出格線背景、把「螢幕座標」換算成「格子座標」、顯示放置預覽(綠色/紅色)。
+/// 格子位置全部手動計算(不使用 GridLayoutGroup),好處是完全掌控每一格的
+/// 顯示/隱藏邏輯,不會有 LayoutGroup 因為子物件啟用狀態改變而重新排列的副作用。
 /// </summary>
 public class BackpackGridUI : MonoBehaviour
 {
@@ -11,6 +13,9 @@ public class BackpackGridUI : MonoBehaviour
     public int width = 8;
     public int height = 6;
     public float cellSize = 64f; // 每一格的像素大小
+
+    [Header("固定顯示的背景格(格子底色/邊框)")]
+    public GameObject cellBackgroundPrefab; // 一個簡單的 Image,例如帶邊框的淺色方塊,平常就會一直顯示
 
     [Header("預覽用的格子高亮圖")]
     public GameObject cellHighlightPrefab; // 一個簡單的 Image,顏色可切換
@@ -26,8 +31,33 @@ public class BackpackGridUI : MonoBehaviour
     {
         RectTransform = GetComponent<RectTransform>();
         Model = new BackpackGridModel(width, height);
+        BuildBackgroundGrid(); // 先生成背景,疊圖順序才會在 highlight 下面
         BuildHighlightGrid();
         HideAllHighlights();
+    }
+
+    /// <summary>
+    /// 生成每一格固定顯示的背景方塊(格線/底色),不會被拖曳邏輯操控,單純視覺用。
+    /// </summary>
+    private void BuildBackgroundGrid()
+    {
+        if (cellBackgroundPrefab == null) return; // 沒指定就跳過,不強制要求
+
+        for (int x = 0; x < width; x++)
+        for (int y = 0; y < height; y++)
+        {
+            var go = Instantiate(cellBackgroundPrefab, transform);
+            var rt = go.GetComponent<RectTransform>();
+            rt.anchorMin = new Vector2(0, 1);
+            rt.anchorMax = new Vector2(0, 1);
+            rt.pivot = new Vector2(0, 1);
+            rt.anchoredPosition = new Vector2(x * cellSize, -y * cellSize);
+            rt.sizeDelta = new Vector2(cellSize, cellSize);
+
+            // 背景格不需要接收滑鼠事件,關掉 raycast 避免擋到物品的拖曳判定
+            var img = go.GetComponent<Image>();
+            if (img != null) img.raycastTarget = false;
+        }
     }
 
     private void BuildHighlightGrid()
@@ -97,12 +127,7 @@ public class BackpackGridUI : MonoBehaviour
     public void HideAllHighlights()
     {
         for (int x = 0; x < width; x++)
-        {
-            for (int y = 0; y < height; y++)
-            {
-                    
-                _highlightCells[x, y].SetActive(false);
-            }
-        }    
+        for (int y = 0; y < height; y++)
+            _highlightCells[x, y].SetActive(false);
     }
 }

@@ -1711,9 +1711,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1da2f7621d241844bd8d9482af6520b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BackpackGridUI
-  width: 8
-  height: 6
+  width: 10
+  height: 8
   cellSize: 64
+  cellBackgroundPrefab: {fileID: 3310378183547280422, guid: 596b7cd0b7c08544abd68a4c5b6f4684, type: 3}
   cellHighlightPrefab: {fileID: 3310378183547280422, guid: 16d06b6b21ea8f04aaba56591c2f8ee6, type: 3}
   validColor: {r: 0.3, g: 1, b: 0.3, a: 0.5}
   invalidColor: {r: 1, g: 0.3, b: 0.3, a: 0.5}
@@ -1730,7 +1731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 0.19607843}
+  m_Color: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
