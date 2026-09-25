@@ -31,12 +31,14 @@ public class DraggableItemUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     }
 
     /// <summary>
-    /// 根據目前形狀更新這個 UI 元件的寬高(像素),旋轉後形狀改變時要呼叫
+    /// 根據目前形狀更新這個 UI 元件的寬高(像素),旋轉後形狀改變時要呼叫。
+    /// 用 GridUI.CellsToPixelSize 而不是直接乘 cellSize,是因為要把格子間距也算進去,
+    /// 這樣跨多格的物品才會跟底下的格子背景剛好對齊。
     /// </summary>
     public void RefreshVisualSize()
     {
         var shape = Item.GetCurrentShape();
-        _rectTransform.sizeDelta = new Vector2(shape.Width * GridUI.cellSize, shape.Height * GridUI.cellSize);
+        _rectTransform.sizeDelta = GridUI.CellsToPixelSize(shape.Width, shape.Height);
         _rectTransform.rotation = Quaternion.identity; // 我們旋轉的是「形狀資料」,不是視覺角度
                                                         // 若想要圖示本身也跟著轉90度,可在這裡另外套用 icon 的 rotation
     }

@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 5
   playerHealth: 10
-  weapon: {fileID: 11400000, guid: f46f5636f2240e1419414729e1e2b2c9, type: 2}
+  backpackPanel: {fileID: 1645654022}
 --- !u!50 &8059739
 Rigidbody2D:
   serializedVersion: 5
@@ -668,6 +668,7 @@ MonoBehaviour:
   itemUIPrefab: {fileID: 2085746733325351952, guid: 1ae3cd85df95a214aad445bf2910deb0, type: 3}
   startingItems:
   - {fileID: 11400000, guid: 07085e1eb5d85b7479f4d39534b6ca32, type: 2}
+  effectRoot: {fileID: 711717798}
 --- !u!4 &104018422
 Transform:
   m_ObjectHideFlags: 0
@@ -676,13 +677,48 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 104018420}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 952.1333, y: 543.54803, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 419248341}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &105825233
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 105825234}
+  m_Layer: 5
+  m_Name: Content
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &105825234
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105825233}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1645654023}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 825, y: 615}
+  m_Pivot: {x: 0, y: 1}
 --- !u!1 &132704066
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,6 +865,7 @@ Transform:
   - {fileID: 132704067}
   - {fileID: 482080157}
   - {fileID: 1738385956}
+  - {fileID: 104018422}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &482080156
@@ -1401,6 +1438,99 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!1 &1114850030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1114850031}
+  - component: {fileID: 1114850033}
+  - component: {fileID: 1114850032}
+  - component: {fileID: 1114850034}
+  m_Layer: 5
+  m_Name: PanelBackground
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1114850031
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114850030}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1645654023}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -40, y: 100}
+  m_SizeDelta: {x: 905, y: 755}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &1114850032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114850030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 0.3529412}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1114850033
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114850030}
+  m_CullTransparentMesh: 1
+--- !u!114 &1114850034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114850030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 899c6ba7f19aa784fafa4eb1d38f8afc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoFitBackground
+  target: {fileID: 1645654023}
+  paddingLeft: 40
+  paddingRight: 40
+  paddingTop: 100
+  paddingBottom: 40
 --- !u!114 &1161579033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1691,13 +1821,15 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1114850031}
+  - {fileID: 105825234}
   m_Father: {fileID: 539111492}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 669.0376, y: -190}
-  m_SizeDelta: {x: 1075.7036, y: 708.958}
+  m_AnchoredPosition: {x: 762, y: -287}
+  m_SizeDelta: {x: 825, y: 615}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1645654024
 MonoBehaviour:
@@ -1711,13 +1843,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1da2f7621d241844bd8d9482af6520b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BackpackGridUI
-  width: 10
-  height: 8
-  cellSize: 64
+  width: 8
+  height: 6
+  cellSize: 90
+  cellSpacing: {x: 15, y: 15}
   cellBackgroundPrefab: {fileID: 3310378183547280422, guid: 596b7cd0b7c08544abd68a4c5b6f4684, type: 3}
+  panelBackground: {fileID: 1114850034}
   cellHighlightPrefab: {fileID: 3310378183547280422, guid: 16d06b6b21ea8f04aaba56591c2f8ee6, type: 3}
   validColor: {r: 0.3, g: 1, b: 0.3, a: 0.5}
   invalidColor: {r: 1, g: 0.3, b: 0.3, a: 0.5}
+  content: {fileID: 105825234}
 --- !u!114 &1645654025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2102,4 +2237,3 @@ SceneRoots:
   - {fileID: 419248341}
   - {fileID: 1422388767}
   - {fileID: 1197758250}
-  - {fileID: 104018422}

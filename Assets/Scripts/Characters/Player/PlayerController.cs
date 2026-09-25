@@ -3,14 +3,18 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance {get; private set;}
+
+    [Header("玩家數值")]
     [SerializeField] float moveSpeed;
     [SerializeField] int playerHealth;
+
+    [Header("玩家UI")]
+     [SerializeField] private GameObject backpackPanel;
     PlayerInputHandler m_playerInput;
     Rigidbody2D m_rigidbody;
     PlayerWeaponHandler m_weaponHandler;
     PlayerHealthHandler m_healthHandler;
     PlayerLevelHandler m_levelHandler;
-    [SerializeField] WeaponData weapon;
 
     void Awake()
     {
@@ -30,7 +34,6 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        m_weaponHandler.AddWeapon(weapon);
         m_healthHandler.Initialize(playerHealth);
     }
 
@@ -38,6 +41,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
        m_levelHandler.LevelUpdate();
+
+       if(m_playerInput.ToggleBackpack)
+        {
+            OnToggleBackpack();
+        }
     }
 
     void FixedUpdate()
@@ -48,5 +56,11 @@ public class PlayerController : MonoBehaviour
     private void Moving()
     {
         m_rigidbody.MovePosition(m_rigidbody.position + m_playerInput.MoveAmt.normalized * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    private void OnToggleBackpack()
+    {
+        if (backpackPanel == null) return;
+        backpackPanel.SetActive(!backpackPanel.activeSelf);
     }
 }

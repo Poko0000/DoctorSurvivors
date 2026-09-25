@@ -118,6 +118,15 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleBackpack"",
+                    ""type"": ""Button"",
+                    ""id"": ""bd692c5f-dd02-478b-b75d-eb6911b9da56"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -195,6 +204,17 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Rush"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9df44178-208e-46fa-a602-d247cd478563"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleBackpack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -724,6 +744,7 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Rush = m_Player.FindAction("Rush", throwIfNotFound: true);
+        m_Player_ToggleBackpack = m_Player.FindAction("ToggleBackpack", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -820,6 +841,7 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Rush;
+    private readonly InputAction m_Player_ToggleBackpack;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -843,6 +865,10 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Rush".
         /// </summary>
         public InputAction @Rush => m_Wrapper.m_Player_Rush;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/ToggleBackpack".
+        /// </summary>
+        public InputAction @ToggleBackpack => m_Wrapper.m_Player_ToggleBackpack;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -878,6 +904,9 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
             @Rush.started += instance.OnRush;
             @Rush.performed += instance.OnRush;
             @Rush.canceled += instance.OnRush;
+            @ToggleBackpack.started += instance.OnToggleBackpack;
+            @ToggleBackpack.performed += instance.OnToggleBackpack;
+            @ToggleBackpack.canceled += instance.OnToggleBackpack;
         }
 
         /// <summary>
@@ -898,6 +927,9 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
             @Rush.started -= instance.OnRush;
             @Rush.performed -= instance.OnRush;
             @Rush.canceled -= instance.OnRush;
+            @ToggleBackpack.started -= instance.OnToggleBackpack;
+            @ToggleBackpack.performed -= instance.OnToggleBackpack;
+            @ToggleBackpack.canceled -= instance.OnToggleBackpack;
         }
 
         /// <summary>
@@ -1154,6 +1186,13 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnRush(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ToggleBackpack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnToggleBackpack(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
