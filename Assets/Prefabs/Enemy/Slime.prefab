@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 8864538870707301873}
   - component: {fileID: 5157476912925728402}
   - component: {fileID: 8300381942440011211}
+  - component: {fileID: 5257154316371710153}
   - component: {fileID: 1008072292649594692}
   - component: {fileID: -7771722805044673290}
   - component: {fileID: 6984469197833556453}
   - component: {fileID: -190472085815706586}
   - component: {fileID: 5792486564552383623}
-  - component: {fileID: 5257154316371710153}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Untagged
@@ -113,6 +113,28 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.8798242, y: 1.3773551}
   m_EdgeRadius: 0
+--- !u!95 &5257154316371710153
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1585118723754225016}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 90eb6f92646e762488e81cc9e711f7ee, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1008072292649594692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,28 +196,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 226f96a1a506bd14ebbd65a640fcd6b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyContactDamage
---- !u!95 &5257154316371710153
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1585118723754225016}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 90eb6f92646e762488e81cc9e711f7ee, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3889563282689025359
 GameObject:
   m_ObjectHideFlags: 0

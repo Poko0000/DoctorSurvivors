@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5416e3169d9fe334682f9a90cff6f799, type: 3}
-  m_Name: ItemData
+  m_Name: ItemData1
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: A
+  itemName: 
   description: 
   icon: {fileID: 7482667652216324306, guid: 9ab1e33846b79ea46bb226bcacb7a433, type: 3}
-  shapeType: 3
+  shapeType: 2
   isWeapon: 1
   weaponData: {fileID: 11400000, guid: f46f5636f2240e1419414729e1e2b2c9, type: 2}
