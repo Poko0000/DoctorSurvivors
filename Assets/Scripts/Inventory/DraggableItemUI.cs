@@ -80,6 +80,18 @@ public class DraggableItemUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         _canvasGroup.blocksRaycasts = true;
         GridUI.HideAllHighlights();
 
+        // 先判斷放開滑鼠的位置是不是「連背包的範圍都不在裡面」——這跟「格子放不下」是兩回事,
+        // 格子放不下會在下面的 fallback 邏輯裡找別的空位,但拖出整個背包 UI 外面,
+        // 代表玩家是真的想把這個物品丟掉,直接交給 BackpackManager 去處理丟棄。
+        bool droppedInsidePanel = RectTransformUtility.RectangleContainsScreenPoint(
+            GridUI.RectTransform, eventData.position, eventData.pressEventCamera);
+
+        if (!droppedInsidePanel && BackpackManager.Instance != null)
+        {
+            BackpackManager.Instance.DropItemToWorld(this);
+            return; // 這個物件接下來會被 BackpackManager 銷毀,後面的放置邏輯不用再跑
+        }
+
         bool placed = false;
         if (GridUI.TryScreenPointToCell(eventData.position, eventData.pressEventCamera, _pointerOffsetInCells, out var cell))
         {
