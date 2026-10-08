@@ -29,7 +29,9 @@ public class EnemyPoolManager : MonoBehaviour
         foreach (EnemyData data in enemyDatas)
         {
             if (!pools.ContainsKey(data))
+            {         
                 pools.Add(data, new EnemyPool(data));
+            }
         }     
     }
 

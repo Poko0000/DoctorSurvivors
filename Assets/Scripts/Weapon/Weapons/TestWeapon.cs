@@ -16,7 +16,5 @@ public class TestWeapon : IWeapon
         Projectile projectile = bullet.GetComponent<Projectile>(); 
 
         projectile.Initialize(dir,data.damage,data.speed,data.lifetime);
-
-        Debug.Log(name + " is attack");
     }
 }

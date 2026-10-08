@@ -3,39 +3,51 @@ using UnityEngine;
 
 public class PlayerLevelHandler : MonoBehaviour
 {
-    [SerializeField] int level = 1;
-    [SerializeField] float exp = 0;
-    [SerializeField] float levelUpExp = 100;
+    private int level = 1;
+    private float playerExp = 0;
+    private float baseLevelUpExp;
+    private float expGrowth;
+    private float levelUpExp;
+    //for UI
+    public int Level => level;
+    public float ExpRatio => playerExp / levelUpExp;
 
-    public event Action OnlevelUp;
+    public event Action<int> OnlevelUp;
 
-    void initLevel()
+    public void Initialize(float baseExp, float growth)
     {
+        baseLevelUpExp = baseExp;
+        expGrowth = growth;
+
         level = 1;
-        exp = 0;
-        levelUpExp = 100;
+        playerExp = 0;
+        levelUpExp = baseLevelUpExp;
     }
 
-    void LevelUp()
+    private void AddExp(float amount)
+    {
+        playerExp += amount;
+
+        while(levelUpExp > 0 && playerExp >= levelUpExp) 
+        {
+            LevelUp();
+        }
+    }
+
+    private void LevelUp()
     {
         level++;
-        exp -= levelUpExp;
-        levelUpExp *= 1.1f;
+        playerExp -= levelUpExp;
+        levelUpExp *= expGrowth;
 
-        OnlevelUp?.Invoke();
-    }
-
-    public void LevelUpdate()
-    {
-        if(exp >= levelUpExp) LevelUp();
+        OnlevelUp?.Invoke(level);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.TryGetComponent(out ExpGem expGem))
         {
-            exp += expGem.exp;
-            Debug.Log("player gain " + expGem.exp + " exp");
+            AddExp(expGem.exp);
             expGem.DestroyGem();
         }
     }

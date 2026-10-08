@@ -67,6 +67,17 @@ public class BackpackManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 背包有空位就放進去;沒有空位就掉在 dropOrigin 旁邊,讓玩家之後撿。
+    /// 升級獎勵等「一定要給玩家」的來源用這個入口。
+    /// </summary>
+    public void AddOrDrop(ItemData data)
+    {
+        if (SpawnItem(data) != null) return;   // 放進背包了
+
+        SpawnWorldPickup(data);                // 滿了:掉到地上
+    }
+
+    /// <summary>
     /// 把物品徹底從背包移除(賣掉/拆解等不需要留下世界物件的情況):觸發 OnUnequipped
     /// 清掉裝備效果(例如銷毀對應的武器物件),並刪除物品的 UI 物件本身。
     /// </summary>

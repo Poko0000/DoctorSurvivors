@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     [Header("玩家數值")]
     [SerializeField] float moveSpeed;
     [SerializeField] int playerHealth;
+    [SerializeField] float baseLevelUpExp = 100;
+    [SerializeField] float expGrowth = 1.1f;
 
     [Header("玩家UI")]
      [SerializeField] private GameObject backpackPanel;
@@ -35,12 +37,12 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         m_healthHandler.Initialize(playerHealth);
+        m_levelHandler.Initialize(baseLevelUpExp, expGrowth);
     }
 
     // Update is called once per frame
     void Update()
     {
-       m_levelHandler.LevelUpdate();
 
        if(m_playerInput.ToggleBackpack)
         {
