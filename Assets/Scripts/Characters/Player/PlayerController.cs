@@ -46,6 +46,11 @@ public class PlayerController : MonoBehaviour
         {
             OnToggleBackpack();
         }
+
+       if(m_playerInput.Pick)
+        {
+            WorldItemPickup.TryPickupNearest(transform.position);
+        }
     }
 
     void FixedUpdate()
