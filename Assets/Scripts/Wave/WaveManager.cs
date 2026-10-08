@@ -5,10 +5,11 @@ public class WaveManager : MonoBehaviour
 {
     public WaveData[] waves;
 
+    // 目前這一波開始後經過的秒數(每次換波會歸零)
     public float GameTime { get; private set; }
 
     public WaveData CurrentWave { get; private set; }
-    private int currentWaveNum;
+    private int currentWaveIndex;
 
     public static WaveManager Instance;
 
@@ -22,7 +23,8 @@ public class WaveManager : MonoBehaviour
 
         Instance = this;
 
-        currentWaveNum = 1;
+        currentWaveIndex = 0;
+        CurrentWave = (waves != null && waves.Length > 0) ? waves[0] : null;
     }
 
 
@@ -35,13 +37,15 @@ public class WaveManager : MonoBehaviour
 
     void UpdateWave()
     {
-        if(currentWaveNum < waves.Length && GameTime > waves[currentWaveNum].endTime)
+        if (CurrentWave == null) return;
+
+        // 用「目前這一波」的 endTime 判斷是否結束;最後一波會停在原地
+        if (currentWaveIndex < waves.Length - 1 && GameTime > CurrentWave.endTime)
         {
             GameTime = 0;
-            currentWaveNum++;
+            currentWaveIndex++;
+            CurrentWave = waves[currentWaveIndex];
             Debug.Log("wave change");
         }
-
-        CurrentWave = waves[currentWaveNum - 1];
     }
 }

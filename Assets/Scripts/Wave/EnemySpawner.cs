@@ -53,9 +53,8 @@ public class EnemySpawner : MonoBehaviour
 
         enemy.transform.position = GetSpawnPosition();
 
+        // 註冊由 Enemy.OnEnable 自動處理,這裡不要再 Register,不然會重複登記
         enemy.Init(info.enemyData);
-
-        EnemyManager.Instance.Register(enemy);
     }
 
     Vector3 GetSpawnPosition()
