@@ -87,8 +87,8 @@ public class ResultUI : MonoBehaviour
     {
         // titleText 設成 title
         titleText.text = title;
-        // timeText 設成 "存活時間 " + FormatTime(flow.ElapsedTime)
-        timeText.text = "Play Time: " + FormatTime(flow.ElapsedTime);
+        // 時間格式交給共用的 TimeFormatter,跟 HUD 計時器一致
+        timeText.text = "Play Time: " + TimeFormatter.ToMinutesSeconds(flow.ElapsedTime);
         // killText 顯示擊殺數
         if (killText != null) killText.text = "Kill: " + flow.KillCount;
         // levelText 顯示 "等級 Lv." + levelHandler.Level
@@ -109,14 +109,5 @@ public class ResultUI : MonoBehaviour
     {
         // panel 關掉
         panel.SetActive(false);
-    }
-
-    // 把秒數轉成 "mm:ss",例如 125.7 → "02:05"
-    private string FormatTime(float seconds)
-    {
-        int totalSeconds = Mathf.FloorToInt(seconds);   // 用 Mathf.FloorToInt 取整數秒
-        int minutes = totalSeconds / 60;                // 分 = 總秒數 / 60
-        int secs    = totalSeconds % 60;                // 秒 = 總秒數 % 60
-        return $"{minutes:00}:{secs:00}";               // 回傳 $"{分:00}:{秒:00}"   ← :00 代表補零到兩位數
     }
 }

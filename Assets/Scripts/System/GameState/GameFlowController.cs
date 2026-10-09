@@ -26,6 +26,7 @@ public class GameFlowController : MonoBehaviour
 
     // 給 UI 訂閱(HUD、結算畫面)
     public event Action<GameStateType> OnStateChanged;
+    public event Action<int> OnKillCountChanged;
     public GameStateType CurrentStateType => stateMachine?.CurrentState != null ? stateMachine.CurrentState.Type : GameStateType.None;
 
     private GameStateMachine stateMachine;
@@ -79,6 +80,7 @@ public class GameFlowController : MonoBehaviour
         // ElapsedTime 歸零,切換到 playingState
         ElapsedTime = 0f;
         KillCount = 0;
+        OnKillCountChanged?.Invoke(KillCount);
         stateMachine.ChangeState(playingState);
 
     }
@@ -112,6 +114,7 @@ public class GameFlowController : MonoBehaviour
         // 只在遊玩中計數(結算後就算有怪死掉也不算進成績)
         if (CurrentStateType != GameStateType.Playing) return;
         KillCount++;
+        OnKillCountChanged?.Invoke(KillCount);
     }
 
     public void GoToGameOver()
