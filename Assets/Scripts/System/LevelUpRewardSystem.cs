@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class LevelUpRewardSystem : MonoBehaviour
 {
-    public static LevelUpRewardSystem Instance;
+    public static LevelUpRewardSystem Instance { get; private set; }
     [SerializeField] private ItemPool itemPool;
     [SerializeField] private int choiceCount = 3;
+
+    [Header("Event")]
+    [SerializeField] PauseEventChannel pauseEvent;
 
     private PlayerLevelHandler levelHandler;
     private int pendingChoices;     // 還沒處理的升級次數
@@ -36,6 +39,7 @@ public class LevelUpRewardSystem : MonoBehaviour
         }
 
         levelHandler = PlayerController.Instance.GetComponent<PlayerLevelHandler>();
+        
         if (levelHandler == null)
         {
             Debug.LogError("[Reward] 玩家身上沒有 PlayerLevelHandler,升級獎勵不會運作。");
@@ -43,10 +47,14 @@ public class LevelUpRewardSystem : MonoBehaviour
         }
 
         levelHandler.OnlevelUp += HandleLevelUp;
-        Debug.Log("[Reward] 已訂閱升級事件");
+
+        if (pauseEvent == null)
+        {
+            Debug.LogError("[Reward] 沒有指定 PauseEventChannel,升級時遊戲不會暫停。");
+        }
     }
 
-void OnDestroy()
+    void OnDestroy()
     {
         if (levelHandler == null) return;
         levelHandler.OnlevelUp -= HandleLevelUp;
@@ -54,7 +62,6 @@ void OnDestroy()
 
     private void HandleLevelUp(int newLevel)
     {
-        Debug.Log("[Reward] 收到升級");
         // pendingChoices 加 1
         pendingChoices++;
         // 如果現在沒有在選(isChoosing 為 false),就呼叫 ShowNextChoice()
@@ -69,20 +76,17 @@ void OnDestroy()
     {
         // 從 itemPool 抽 choiceCount 個
         List<ItemData> choices = itemPool.GetRandomChoices(choiceCount);
-        Debug.Log("[Reward] 抽到 " + choices.Count + " 個");
 
-        // 如果抽不到任何東西,不要卡住:
-        //         把 pendingChoices 歸零、isChoosing 設 false 然後直接 return
+        // 如果抽不到任何東西,不要卡住:交給 FinishChoosing 收尾
         if (choices.Count == 0)
         {
-            // 沒東西可選:不要卡住
-            pendingChoices = 0;
-            isChoosing = false;
+            FinishChoosing();
             return;
         }
 
         // isChoosing = true,觸發 OnChoicesReady 並把抽到的清單傳出去
         isChoosing = true;
+        pauseEvent.RaisePauseRequest(this);
         OnChoicesReady?.Invoke(choices);
     }
 
@@ -95,16 +99,25 @@ void OnDestroy()
         //  pendingChoices 減 1
         pendingChoices--;
         // 如果還有 pendingChoices,就 ShowNextChoice();
-        //          否則 isChoosing = false 並觸發 OnAllChoicesDone
+        //          否則交給 FinishChoosing 收尾
         if(pendingChoices > 0) 
         {
             ShowNextChoice();
         }
         else
         {
-            isChoosing = false;
-            OnAllChoicesDone?.Invoke();
+            FinishChoosing();
         }
 
+    }
+
+    // 結束整輪選擇:關閉選單、恢復遊戲
+    // 正常選完、或中途抽不到道具,都走這裡收尾
+    private void FinishChoosing()
+    {
+        pendingChoices = 0;
+        isChoosing = false;
+        OnAllChoicesDone?.Invoke();
+        pauseEvent.RaisePauseRelease(this);
     }
 }

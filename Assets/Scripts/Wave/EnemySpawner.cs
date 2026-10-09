@@ -1,14 +1,34 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
 
     [SerializeField] private float spawnOffset = 3f;
-    private Transform player => PlayerController.Instance.transform;
     private float[] spawnTimers;
     private WaveData currentWave;
-    
+    private bool hasLoggedMissingPlayer;
+    private Transform player
+    {
+       
+        get 
+        {
+            
+            if (PlayerController.Instance == null)
+            {
+                if (!hasLoggedMissingPlayer)
+                {
+                    Debug.LogError("[Spawner] 找不到 PlayerController.Instance,敵人不會生成。");
+                    hasLoggedMissingPlayer = true;
+                }
+                return null;
+            }
+            // 找到了就把旗標重設,之後如果又遺失還能再報一次
+            hasLoggedMissingPlayer = false;
+            return PlayerController.Instance.transform;
+        }
+    }
+
+
     private void Update()
     {
         currentWave = WaveManager.Instance.CurrentWave;
@@ -38,7 +58,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-   void SpawnEnemy(SpawnInfo info)
+    void SpawnEnemy(SpawnInfo info)
     {
         if (info.enemyData == null)
         {
@@ -46,18 +66,21 @@ public class EnemySpawner : MonoBehaviour
             return;
         }
 
+        // 先確認玩家存在,再從物件池取敵人
+        Transform target = player;
+        if (target == null) return;
+
         //限制同種敵人數量
         if (EnemyManager.Instance.GetAliveCount(info.enemyData) >= info.maxAlive) return;
 
         Enemy enemy = EnemyPoolManager.Instance.Get(info.enemyData);
-
-        enemy.transform.position = GetSpawnPosition();
+        enemy.transform.position = GetSpawnPosition(target.position);
 
         // 註冊由 Enemy.OnEnable 自動處理,這裡不要再 Register,不然會重複登記
         enemy.Init(info.enemyData);
     }
 
-    Vector3 GetSpawnPosition()
+    Vector3 GetSpawnPosition(Vector3 center)
     {
         Camera cam = Camera.main;
 
@@ -69,16 +92,16 @@ public class EnemySpawner : MonoBehaviour
         switch (side)
         {
             case 0:
-                return player.position + new Vector3(-width - spawnOffset, Random.Range(-height, height));
+                return center + new Vector3(-width - spawnOffset, Random.Range(-height, height));
 
             case 1:
-                return player.position + new Vector3(width + spawnOffset, Random.Range(-height, height));
+                return center + new Vector3(width + spawnOffset, Random.Range(-height, height));
 
             case 2:
-                return player.position + new Vector3(Random.Range(-width, width), height + spawnOffset);
+                return center + new Vector3(Random.Range(-width, width), height + spawnOffset);
 
             default:
-                return player.position + new Vector3(Random.Range(-width, width), -height - spawnOffset);
+                return center + new Vector3(Random.Range(-width, width), -height - spawnOffset);
         }
     }
 }

@@ -31,9 +31,6 @@ public class LevelUpUI : MonoBehaviour
             rewardSystem.OnChoicesReady -= ShowChoices;
             rewardSystem.OnAllChoicesDone -= Hide;
         }
-
-        // 保險:如果在選單打開時切換場景,避免遊戲停在暫停狀態
-        Time.timeScale = 1f;
     }
 
     private void ShowChoices(List<ItemData> choices)
@@ -52,7 +49,6 @@ public class LevelUpUI : MonoBehaviour
         }
 
         panel.SetActive(true);
-        Time.timeScale = 0f;
     }
 
     private void OnCardClicked(ItemData chosen)
@@ -63,6 +59,5 @@ public class LevelUpUI : MonoBehaviour
     private void Hide()
     {
         panel.SetActive(false);
-        Time.timeScale = 1f;
     }
 }

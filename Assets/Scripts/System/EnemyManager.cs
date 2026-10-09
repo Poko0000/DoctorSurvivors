@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public static EnemyManager Instance;
+    public static EnemyManager Instance { get; private set; }
     private Dictionary<EnemyData, List<Enemy>> enemies;
 
     private void Awake() 
