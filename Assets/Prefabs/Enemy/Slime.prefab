@@ -160,6 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52dee97a9e6f7a34d8dedc9b51905ccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  deathChannel: {fileID: 11400000, guid: 10569106b70a9fb48ae4ac496fb26d37, type: 2}
 --- !u!114 &6984469197833556453
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class ResultUI : MonoBehaviour
     [SerializeField] private TMP_Text titleText;
     [SerializeField] private TMP_Text timeText;
     [SerializeField] private TMP_Text levelText;
+    [SerializeField] private TMP_Text killText;
 
     [Header("按鈕")]
     [SerializeField] private Button restartButton;
@@ -87,16 +88,18 @@ public class ResultUI : MonoBehaviour
         // titleText 設成 title
         titleText.text = title;
         // timeText 設成 "存活時間 " + FormatTime(flow.ElapsedTime)
-        timeText.text = "存活時間 " + FormatTime(flow.ElapsedTime);
+        timeText.text = "Play Time: " + FormatTime(flow.ElapsedTime);
+        // killText 顯示擊殺數
+        if (killText != null) killText.text = "Kill: " + flow.KillCount;
         // levelText 顯示 "等級 Lv." + levelHandler.Level
         // null → levelText 顯示 "等級 --"
         if(levelHandler != null)
         {
-            levelText.text = "等級 Lv." + levelHandler.Level;
+            levelText.text = "Level Lv." + levelHandler.Level;
         }
         else
         {
-            levelText.text = "等級 --";
+            levelText.text = "Level --";
         }
         // panel 打開
         panel.SetActive(true);

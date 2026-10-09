@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour, IEnemyComponent
 {
+    [SerializeField] private EnemyDeathEventChannel deathChannel;   // 在 Enemy prefab 上拖入
+
     private EnemyData data;
 
     private float hp;
@@ -32,6 +34,8 @@ public class EnemyHealth : MonoBehaviour, IEnemyComponent
     private void Die()
     {
         isDead = true;
+        // 先廣播死亡,再回收進物件池(回收後物件會被關掉)
+        if (deathChannel != null) deathChannel.RaiseEnemyDied(data);
         GetComponent<EnemyDrop>().Drop();
         //Destroy(gameObject);
         EnemyPoolManager.Instance.Return(GetComponent<Enemy>());

@@ -12,6 +12,7 @@ public class GameFlowController : MonoBehaviour
 
     [Header("事件")]
     [SerializeField] private PauseEventChannel pauseChannel;
+    [SerializeField] private EnemyDeathEventChannel enemyDeathChannel;
 
     [Header("場景")]
     [SerializeField] private SceneData battleScene;   // 重來時載入
@@ -21,6 +22,7 @@ public class GameFlowController : MonoBehaviour
     public PauseEventChannel PauseChannel => pauseChannel;
     public float SurviveDuration => surviveDuration;
     public float ElapsedTime { get; private set; }
+    public int KillCount { get; private set; }
 
     // 給 UI 訂閱(HUD、結算畫面)
     public event Action<GameStateType> OnStateChanged;
@@ -50,6 +52,18 @@ public class GameFlowController : MonoBehaviour
         stateMachine.OnStateChanged += type => OnStateChanged?.Invoke(type);
     }
 
+    void OnEnable()
+    {
+        // 訂閱敵人死亡事件
+        if (enemyDeathChannel != null) enemyDeathChannel.OnEnemyDied += HandleEnemyDied;
+    }
+
+    void OnDisable()
+    {
+        // SO 會跨場景存在,一定要退訂,不然重來後舊的 controller 還會被呼叫
+        if (enemyDeathChannel != null) enemyDeathChannel.OnEnemyDied -= HandleEnemyDied;
+    }
+
     void Start()
     {
         // 檢查 pauseChannel,null 就 LogError
@@ -57,9 +71,14 @@ public class GameFlowController : MonoBehaviour
         {
             Debug.LogError("[GameFlow] 沒有指定 PauseEventChannel,結算時遊戲不會暫停。");
         }
+        if (enemyDeathChannel == null)
+        {
+            Debug.LogError("[GameFlow] 沒有指定 EnemyDeathEventChannel,擊殺數不會累計。");
+        }
 
         // ElapsedTime 歸零,切換到 playingState
         ElapsedTime = 0f;
+        KillCount = 0;
         stateMachine.ChangeState(playingState);
 
     }
@@ -86,6 +105,13 @@ public class GameFlowController : MonoBehaviour
     {
         // ElapsedTime 加上 deltaTime
         ElapsedTime += deltaTime;
+    }
+
+    private void HandleEnemyDied(EnemyData data)
+    {
+        // 只在遊玩中計數(結算後就算有怪死掉也不算進成績)
+        if (CurrentStateType != GameStateType.Playing) return;
+        KillCount++;
     }
 
     public void GoToGameOver()
