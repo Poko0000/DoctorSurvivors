@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     {
         m_healthHandler.Initialize(playerHealth);
         m_levelHandler.Initialize(baseLevelUpExp, expGrowth);
+        OnToggleBackpack();
     }
 
     // Update is called once per frame
