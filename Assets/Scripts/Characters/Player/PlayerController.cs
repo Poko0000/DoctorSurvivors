@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float expGrowth = 1.1f;
 
     [Header("玩家UI")]
-     [SerializeField] private GameObject backpackPanel;
+    [SerializeField] private BackpackPanelController backpackPanel;
     PlayerInputHandler m_playerInput;
     Rigidbody2D m_rigidbody;
     PlayerWeaponHandler m_weaponHandler;
@@ -38,7 +38,6 @@ public class PlayerController : MonoBehaviour
     {
         m_healthHandler.Initialize(playerHealth);
         m_levelHandler.Initialize(baseLevelUpExp, expGrowth);
-        OnToggleBackpack();
     }
 
     // Update is called once per frame
@@ -69,6 +68,6 @@ public class PlayerController : MonoBehaviour
     private void OnToggleBackpack()
     {
         if (backpackPanel == null) return;
-        backpackPanel.SetActive(!backpackPanel.activeSelf);
+        backpackPanel.Toggle();
     }
 }

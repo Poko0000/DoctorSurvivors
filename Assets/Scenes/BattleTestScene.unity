@@ -171,7 +171,7 @@ MonoBehaviour:
   playerHealth: 10
   baseLevelUpExp: 5
   expGrowth: 1.1
-  backpackPanel: {fileID: 1645654022}
+  backpackPanel: {fileID: 240454300}
 --- !u!50 &8059739
 Rigidbody2D:
   serializedVersion: 5
@@ -842,6 +842,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   spawnOffset: 3
+--- !u!1 &240454298
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 240454299}
+  - component: {fileID: 240454300}
+  m_Layer: 5
+  m_Name: BackpackUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &240454299
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240454298}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1645654023}
+  m_Father: {fileID: 539111492}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 154, y: 167}
+  m_SizeDelta: {x: 615, y: 405}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &240454300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240454298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a33108af2064c2447b44263276e24ed3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BackpackPanelController
+  backpackPanel: {fileID: 1645654022}
 --- !u!114 &297286958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1515,7 +1565,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1645654023}
+  - {fileID: 240454299}
   - {fileID: 870922983}
   - {fileID: 1456456564}
   m_Father: {fileID: 0}
@@ -1804,7 +1854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b525a06f36a617e49be26f0e137d1294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameFlowController
-  surviveDuration: 5
+  surviveDuration: 30
   pauseChannel: {fileID: 11400000, guid: e519d285440d9474f95044f35d8d5c0f, type: 2}
   battleScene: {fileID: 11400000, guid: e45f66a8a86496a42bd3cb9228ba95e8, type: 2}
   menuScene: {fileID: 11400000, guid: 5c838cf140675264db1fd3ecd5ef2388, type: 2}
@@ -2855,18 +2905,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1645654022}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1114850031}
   - {fileID: 105825234}
-  m_Father: {fileID: 539111492}
+  m_Father: {fileID: 240454299}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1114, y: -373}
+  m_AnchoredPosition: {x: 307.5, y: -202.5}
   m_SizeDelta: {x: 615, y: 405}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1645654024
