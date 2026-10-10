@@ -1990,7 +1990,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelUpRewardSystem
   itemPool: {fileID: 11400000, guid: 449886e6679c1f7419b54b9737c30080, type: 2}
-  choiceCount: 2
+  choiceCount: 3
   pauseEvent: {fileID: 11400000, guid: e519d285440d9474f95044f35d8d5c0f, type: 2}
 --- !u!1 &689108272
 GameObject:
@@ -2194,7 +2194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b525a06f36a617e49be26f0e137d1294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameFlowController
-  surviveDuration: 30
+  surviveDuration: 120
   pauseChannel: {fileID: 11400000, guid: e519d285440d9474f95044f35d8d5c0f, type: 2}
   enemyDeathChannel: {fileID: 11400000, guid: 10569106b70a9fb48ae4ac496fb26d37, type: 2}
   battleScene: {fileID: 11400000, guid: e45f66a8a86496a42bd3cb9228ba95e8, type: 2}
