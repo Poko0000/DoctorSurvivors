@@ -30,11 +30,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f46f5636f2240e1419414729e1e2b2c9
-    m_Address: Assets/Data/Weapons/WeaponData_Test.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f7f36e6de51a6954a81d18180c7e1aef
     m_Address: Assets/Data/Enemys/EnemyData_Test.asset
     m_ReadOnly: 0

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1aad787ef123c7498e108b100664e28, type: 3}
-  m_Name: WeaponData_wp_02
+  m_Name: WeaponData_wp02
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  weaponName: knife
+  weaponName: Knife
   projectilePrefab: {fileID: 0}
   damage: 5
   cooldown: 2

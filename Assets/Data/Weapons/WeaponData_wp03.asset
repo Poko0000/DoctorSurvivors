@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1aad787ef123c7498e108b100664e28, type: 3}
-  m_Name: WeaponData_wp_03
+  m_Name: WeaponData_wp03
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  weaponName: sickle
+  weaponName: Sickle
   projectilePrefab: {fileID: 0}
   damage: 2
   cooldown: 4
