@@ -1,0 +1,5 @@
+id,weaponName,damage,cooldown,speed,lifetime,amount,range,maxLevel
+wp_01,TestWeapon,2,2,15,5,1,1,0
+wp_02,knife,5,2,20,5,1,1,0
+wp_03,sickle,2,4,15,5,1,1,0
+wp_04,gun,2,2,15,5,1,1,0
