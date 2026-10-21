@@ -11,6 +11,8 @@ public class WeaponData : ScriptableObject
 
     public float cooldown;
 
+    public float hitInterval;   // 持續型武器對同一目標的傷害間隔
+
     public float speed;
 
     public float lifetime;

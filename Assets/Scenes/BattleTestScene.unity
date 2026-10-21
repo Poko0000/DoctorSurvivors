@@ -795,7 +795,7 @@ MonoBehaviour:
   itemUIPrefab: {fileID: 2085746733325351952, guid: 1ae3cd85df95a214aad445bf2910deb0, type: 3}
   startingItems:
   - {fileID: 11400000, guid: 07085e1eb5d85b7479f4d39534b6ca32, type: 2}
-  - {fileID: 11400000, guid: 9f9519eda0e8cb747a9c592d168b58fd, type: 2}
+  - {fileID: 11400000, guid: dd336be530892674cad90d865248b841, type: 2}
   effectRoot: {fileID: 711717798}
   worldItemPickupPrefab: {fileID: 3033701219583464031, guid: 33291194c3a97354e97ba64d553ab3e7, type: 3}
   dropOrigin: {fileID: 8059741}

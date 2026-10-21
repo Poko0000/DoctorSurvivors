@@ -12,7 +12,7 @@ public class WeaponImporter
     private struct WeaponRowData
     {
         public string weaponName;
-        public float damage, cooldown, speed, lifetime, range;
+        public float damage, cooldown, hitInterval, speed, lifetime, range;
         public int amount, maxLevel;
     }
 
@@ -94,6 +94,15 @@ public class WeaponImporter
         // damage、cooldown、speed、lifetime、range 是 float
         if (!TryGetFloat(row, "damage", out data.damage)) return false;
         if (!TryGetFloat(row, "cooldown", out data.cooldown)) return false;
+        // hitInterval 為選填欄位:表裡還沒加這欄時用預設值 0.5,不讓整列被略過
+        if (row.ContainsKey("hitInterval"))
+        {
+            if (!TryGetFloat(row, "hitInterval", out data.hitInterval)) return false;
+        }
+        else
+        {
+            data.hitInterval = 0.5f;
+        }
         if (!TryGetFloat(row, "speed", out data.speed)) return false;
         if (!TryGetFloat(row, "lifetime", out data.lifetime)) return false;
         if (!TryGetFloat(row, "range", out data.range)) return false;
@@ -109,6 +118,7 @@ public class WeaponImporter
         asset.weaponName = data.weaponName;
         asset.damage = data.damage;
         asset.cooldown = data.cooldown;
+        asset.hitInterval = data.hitInterval;
         asset.speed = data.speed;
         asset.lifetime = data.lifetime;
         asset.range = data.range;

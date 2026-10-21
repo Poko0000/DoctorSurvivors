@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WeaponData_wp01
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   weaponName: TestWeapon
-  projectilePrefab: {fileID: 7684418543100613342, guid: 7b4fd6616bc88b44697d01521ed7846d, type: 3}
+  projectilePrefab: {fileID: 7684418543100613342, guid: b6a245bb05c76214f859d9560543fe61, type: 3}
   damage: 2
   cooldown: 2
   speed: 15
