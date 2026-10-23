@@ -12,7 +12,7 @@ public class WeaponImporter
     private struct WeaponRowData
     {
         public string weaponName;
-        public float damage, cooldown, hitInterval, speed, lifetime, range;
+        public float damage, cooldown, hitInterval, spreadAngle, speed, lifetime, range;
         public int amount, maxLevel;
     }
 
@@ -103,6 +103,11 @@ public class WeaponImporter
         {
             data.hitInterval = 0.5f;
         }
+        // spreadAngle 為選填欄位:沒有這欄時預設 0(非散射武器用不到)
+        if (row.ContainsKey("spreadAngle"))
+        {
+            if (!TryGetFloat(row, "spreadAngle", out data.spreadAngle)) return false;
+        }
         if (!TryGetFloat(row, "speed", out data.speed)) return false;
         if (!TryGetFloat(row, "lifetime", out data.lifetime)) return false;
         if (!TryGetFloat(row, "range", out data.range)) return false;
@@ -119,6 +124,7 @@ public class WeaponImporter
         asset.damage = data.damage;
         asset.cooldown = data.cooldown;
         asset.hitInterval = data.hitInterval;
+        asset.spreadAngle = data.spreadAngle;
         asset.speed = data.speed;
         asset.lifetime = data.lifetime;
         asset.range = data.range;

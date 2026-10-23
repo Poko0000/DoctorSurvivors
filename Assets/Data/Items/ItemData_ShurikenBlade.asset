@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemData_ShurikenBlade
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: ShurikenBlade
-  description: Square 2x2
+  description: Square 2x2 ShurikenBlade
   icon: {fileID: 7482667652216324306, guid: 9ab1e33846b79ea46bb226bcacb7a433, type: 3}
   shapeType: 3
   isWeapon: 1

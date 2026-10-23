@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5416e3169d9fe334682f9a90cff6f799, type: 3}
-  m_Name: ItemData_Single
+  m_Name: ItemData_ZoneWeapon
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: Single
-  description: Line 3 Vertial
+  itemName: ZoneWeapon
+  description: Line 2 ZoneWeapon
   icon: {fileID: 7482667652216324306, guid: 9ab1e33846b79ea46bb226bcacb7a433, type: 3}
-  shapeType: 0
+  shapeType: 1
   isWeapon: 1
-  weaponData: {fileID: 11400000, guid: c140f48a5a9dc4b48abe4e5ba859a42d, type: 2}
+  weaponData: {fileID: 11400000, guid: ca5c0436ff5344941af698c7dd8791c2, type: 2}

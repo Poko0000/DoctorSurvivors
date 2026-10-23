@@ -79,4 +79,26 @@ public class EnemyManager : MonoBehaviour
 
         return nearest;
     }
+
+    /// <summary>在 range 內隨機挑一隻敵人,範圍內沒有則回傳 null</summary>
+    public Enemy GetRandomEnemyInRange(Vector3 position, float range)
+    {
+        Enemy picked = null;
+        int seen = 0;
+        float sqrRange = range * range;
+
+        foreach (var pair in enemies)
+        {
+            foreach (Enemy enemy in pair.Value)
+            {
+                if ((enemy.transform.position - position).sqrMagnitude > sqrRange) continue;
+
+                // 水塘抽樣:不用建 List,每隻符合的敵人有 1/seen 機率取代目前結果,最終每隻機率相同
+                seen++;
+                if (Random.Range(0, seen) == 0) picked = enemy;
+            }
+        }
+
+        return picked;
+    }
 }

@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1aad787ef123c7498e108b100664e28, type: 3}
   m_Name: WeaponData_wp04
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  weaponName: Gun
-  projectilePrefab: {fileID: 0}
-  damage: 2
-  cooldown: 2
+  weaponName: Zone Weapon
+  projectilePrefab: {fileID: 3211869854559745946, guid: f348e353e44971e4182cd9f6226be39a, type: 3}
+  damage: 1
+  cooldown: 3
+  hitInterval: 1
+  spreadAngle: 0
   speed: 15
-  lifetime: 5
-  amount: 1
-  range: 1
+  lifetime: 2
+  amount: 2
+  range: 30
   maxLevel: 0
-  weaponPrefab: {fileID: 0}
+  weaponPrefab: {fileID: 1493665847200883624, guid: 9a03a1e9608487e41a35fa7e3c6d91c7, type: 3}

@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   weaponName: ShurikenBlade
   projectilePrefab: {fileID: 7684418543100613342, guid: 7b4fd6616bc88b44697d01521ed7846d, type: 3}
-  damage: 1
+  damage: 5
   cooldown: 2
   hitInterval: 0.5
-  speed: 50
+  speed: 20
   lifetime: 5
-  amount: 3
-  range: 10
+  amount: 1
+  range: 1
   maxLevel: 0
   weaponPrefab: {fileID: 1493665847200883624, guid: 97eebc74ff109f14c9f690cc4329faa0, type: 3}

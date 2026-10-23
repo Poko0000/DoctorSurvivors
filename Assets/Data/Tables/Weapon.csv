@@ -1,5 +1,5 @@
 id,weaponName,damage,cooldown,speed,lifetime,amount,range,maxLevel
-wp01,TestWeapon,2,2,15,5,1,1,0
-wp02,Knife,5,2,20,5,1,1,0
-wp03,Sickle,2,4,15,5,1,1,0
-wp04,Gun,2,2,15,5,1,1,0
+wp01,Knife,2,2,15,5,1,1,0
+wp02,ShurikenBlade,5,2,20,5,1,1,0
+wp03,Gun,2,4,15,5,1,1,0
+wp04,Sickle,2,2,15,5,1,1,0
