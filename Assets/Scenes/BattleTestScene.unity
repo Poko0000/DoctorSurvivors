@@ -794,7 +794,7 @@ MonoBehaviour:
   rootCanvas: {fileID: 539111491}
   itemUIPrefab: {fileID: 2085746733325351952, guid: 1ae3cd85df95a214aad445bf2910deb0, type: 3}
   startingItems:
-  - {fileID: 11400000, guid: 954b6e87bd395ac4fa95bc76dc620209, type: 2}
+  - {fileID: 11400000, guid: 07085e1eb5d85b7479f4d39534b6ca32, type: 2}
   effectRoot: {fileID: 711717798}
   worldItemPickupPrefab: {fileID: 3033701219583464031, guid: 33291194c3a97354e97ba64d553ab3e7, type: 3}
   dropOrigin: {fileID: 8059741}
